@@ -16,11 +16,12 @@
 controller/controller.config
 controller/controller
 
+homekit/homekit.config
+homekit/homekit
+
 .idea/gbp4.iml
 .idea/inspectionProfiles/
 .idea/misc.xml
 .idea/modules.xml
 .idea/vcs.xml
 .idea/workspace.xml
-homekit/
-notifier/

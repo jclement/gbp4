@@ -5,8 +5,8 @@ import (
 	"github.com/BurntSushi/toml"
 	"github.com/eclipse/paho.mqtt.golang"
 	"github.com/op/go-logging"
-	"time"
 	"github.com/stianeikeland/go-rpio"
+	"time"
 )
 
 // GarageControllerConfig represents all startup configuration for a garage controller
@@ -19,8 +19,8 @@ type GarageControllerConfig struct {
 	MQTTTopicControl  string
 	MQTTTopicStatus   string
 	TravelDelay       int
-	PinStatus int
-	PinControl int
+	PinStatus         int
+	PinControl        int
 }
 
 // DoorState represents the state of the garage door
@@ -64,7 +64,6 @@ type GarageController struct {
 
 // NewGarageController creates a new Garage Controller from a configuration and logging object
 func NewGarageController(config GarageControllerConfig, log *logging.Logger) *GarageController {
-
 
 	pinStatus := rpio.Pin(config.PinStatus)
 	pinStatus.Mode(rpio.Input)

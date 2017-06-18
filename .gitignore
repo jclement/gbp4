@@ -14,6 +14,7 @@
 .glide/
 
 controller/controller.config
+controller/controller
 
 .idea/gbp4.iml
 .idea/inspectionProfiles/

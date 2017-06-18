@@ -18,6 +18,7 @@ controller/controller
 
 homekit/homekit.config
 homekit/homekit
+homekit/Garage Door
 
 .idea/gbp4.iml
 .idea/inspectionProfiles/

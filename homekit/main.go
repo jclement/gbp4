@@ -79,14 +79,12 @@ func NewHomeKitController(config HomeKitConfig, log *logging.Logger) *HomeKitCon
 		switch value {
 		case characteristic.TargetDoorStateOpen:
 			code = "O"
-			controller.Opener.CurrentDoorState.SetValue(characteristic.CurrentDoorStateOpen)
 		case characteristic.TargetDoorStateClosed:
 			code = "C"
-			controller.Opener.CurrentDoorState.SetValue(characteristic.CurrentDoorStateClosed)
 		}
 
 		if code != "" {
-			controller.Log.Debugf("Updating to %s", code)
+			controller.Log.Debugf("HomeKit changing status to %s", code)
 			if token := controller.Client.Publish(config.MQTTTopicControl, 0, false, code); token.Wait() && token.Error() != nil {
 				controller.Log.Fatalf("Unable to publish control message : %v", token.Error())
 			}
@@ -103,16 +101,20 @@ func NewHomeKitController(config HomeKitConfig, log *logging.Logger) *HomeKitCon
 	clientOptions.SetWill(config.MQTTTopicPresence, "GBP-HOMEKIT-OFFLINE", 0, false)
 	clientOptions.SetDefaultPublishHandler(func(client mqtt.Client, msg mqtt.Message) {
 		if msg.Topic() == config.MQTTTopicStatus {
-			controller.Log.Debugf("New status: %s", string(msg.Payload()))
+			controller.Log.Debugf("Received MQTT status: %s", string(msg.Payload()))
 			switch string(msg.Payload()) {
 			case "O":
 				controller.Opener.CurrentDoorState.SetValue(characteristic.CurrentDoorStateOpen)
+				controller.Opener.TargetDoorState.SetValue(characteristic.TargetDoorStateOpen)
 			case "U":
 				controller.Opener.CurrentDoorState.SetValue(characteristic.CurrentDoorStateOpening)
+				controller.Opener.TargetDoorState.SetValue(characteristic.TargetDoorStateOpen)
 			case "D":
 				controller.Opener.CurrentDoorState.SetValue(characteristic.CurrentDoorStateClosing)
+				controller.Opener.TargetDoorState.SetValue(characteristic.TargetDoorStateClosed)
 			case "C":
 				controller.Opener.CurrentDoorState.SetValue(characteristic.CurrentDoorStateClosed)
+				controller.Opener.TargetDoorState.SetValue(characteristic.TargetDoorStateClosed)
 			}
 		}
 	})

@@ -5,6 +5,7 @@
       <root url="file://$PROJECT_DIR$/../.." />
       <root url="file://$PROJECT_DIR$/../../../google.golang.org" />
       <root url="file://$PROJECT_DIR$/../../../sample" />
+      <root url="file://$PROJECT_DIR$/../../../gopkg.in" />
       <root url="file://$PROJECT_DIR$/../../../bitbucket.org" />
       <root url="file://$PROJECT_DIR$/../../../golang.org" />
     </CLASSES>
@@ -13,6 +14,7 @@
       <root url="file://$PROJECT_DIR$/../.." />
       <root url="file://$PROJECT_DIR$/../../../google.golang.org" />
       <root url="file://$PROJECT_DIR$/../../../sample" />
+      <root url="file://$PROJECT_DIR$/../../../gopkg.in" />
       <root url="file://$PROJECT_DIR$/../../../bitbucket.org" />
       <root url="file://$PROJECT_DIR$/../../../golang.org" />
     </SOURCES>
